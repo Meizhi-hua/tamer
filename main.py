@@ -14,6 +14,7 @@ from streamlit_echarts import st_echarts
 from echarts_option import option_pie, option_gauge, option_bar, option_pie2
 from streamlit_option_menu import option_menu
 from streamlit_ace import st_ace
+from streamlit_elements import elements, mui, html
 
 choice_code     =   ["Java","C", "C++",  "Python"]
 file_type       =   [".java",".c", ".cpp",  ".py"]
@@ -476,7 +477,7 @@ def set_bg_hack_url():
          f"""
          <style>
          .stApp {{
-             background: url("https://great.wzznft.com/i/2023/06/11/r8q7tq.gif");
+             background: url("https://img3.wallspic.com/previews/3/3/6/0/1/110633/110633-dui_cheng-bai_se-gu_piao_de_cha_tu-duo_bian_xing-de_xin_xi-x750.jpg");
              background-size: cover
          }}
          </style>
@@ -484,6 +485,14 @@ def set_bg_hack_url():
          unsafe_allow_html=True
      )
 
+def show_video() -> None:
+    st.markdown("""
+    <video controls width="250" autoplay="true" muted="true" loop="true">
+    <source 
+            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" 
+            type="video/mp4" />
+    </video>""", unsafe_allow_html=True)
+    
 def callback2() -> None:
     fp = open("./tmp/sem", "w")
     fp.write("1")
@@ -513,16 +522,17 @@ def show_info() -> None:
 
 
 def show_intro() -> None:
-    c1, c2, c3, c4= st.columns([0.2, 0.35, 0.35, 0.1])
-    c2.image("./image/advantages1.png")
+    #c1, c2, c3, c4= st.columns([0.2, 0.35, 0.35, 0.1])
+    #c2.image("./image/advantages1.png")
     #c4.image("./image/blank.png", width = 50)
-    c3.image("./image/test_cut.gif")
+    #c3.image("./image/test_cut.gif")
     #st.image("./image/blank.png", width=150)
-    c1, c2, c3, c4, c5= st.columns([0.15, 0.35, 0.05, 0.35, 0.1])
+    #c1, c2, c3, c4, c5= st.columns([0.15, 0.35, 0.05, 0.35, 0.1])
     #c2.image("./image/blank.png", width = 50)
-    c2.image("./image/search11.gif")
-    c4.image("./image/blank.png", width=20)
-    c4.image("./image/app.png")
+    #c2.image("./image/search11.gif")
+    #c4.image("./image/blank.png", width=20)
+    #c4.image("./image/app.png")
+    st.image("./image/a.gif", use_column_width=True)
     
 def show_single() -> None:
     #m = st.markdown("""
@@ -531,7 +541,8 @@ def show_single() -> None:
     #    background-color: #e0e0ef;color:black;font-size:20px;height:2em;width:5em;border-radius:10px 10px 10px 10px;
     #}
     #</style>""", unsafe_allow_html=True)
-    st.image("./image/title1.png", use_column_width=True)
+    set_bg_hack_url()
+    st.image("./image/title_light.png", use_column_width=True)
     st.markdown(
     """
     <style>
@@ -545,30 +556,31 @@ def show_single() -> None:
     c1, c2, c3 = st.columns([0.5, 0.1, 0.4])
     c1.selectbox("",options=choice_code)
     c2.button("检测")
-    c3.checkbox("我已阅读并同意用户使用条款和隐私政策")
+    #c3.checkbox("我已阅读并同意用户使用条款和隐私政策")
     #st.set_page_config(layout="wide")
     c1, c2 = st.columns(2)
     # Spawn a new Ace editor
     with c1:
-        st_ace(language="java", theme="github", height=500, keybinding="vscode", key=1, font_size=10)
+        st_ace(language="java", theme="github", height=400, keybinding="vscode", key=1, font_size=10)
     with c2:
-        st_ace(language="java", theme="github", height=500, keybinding="vscode", key=2, font_size=10)
+        st_ace(language="java", theme="github", height=400, keybinding="vscode", key=2, font_size=10)
 
 def show_multi() -> None:
+    set_bg_hack_url()
     m = st.markdown("""
     <style>
     div.stButton > button:first-child {
         background-color: #e0e0ef;color:black;font-size:20px;height:4em;width:4em;border-radius:100px 100px 100px 100px;
     }
     </style>""", unsafe_allow_html=True)
-    st.image("./image/title1.png", use_column_width=True)
-    st.image("./image/blank.png", width=100)
+    st.image("./image/title_light.png", use_column_width=True)
+    #st.image("./image/blank.png", width=100)
     c1, c2, c3 = st.columns([0.47, 0.06, 0.47])
     c1.text_input("请输入源文件路径")
     c3.text_input("请输入待检测文件路径")
-    c2.image("./image/blank.png", width=1)
+    #c2.image("./image/blank.png", width=1)
     c2.button("检测")
-    st.image("./image/blank.png", width=100)
+    #st.image("./image/blank.png", width=100)
     #c1, c2, c3, c4 = st.columns([0.1, 0.4, 0.1, 0.4])
     #c1.image("./image/blank.png", width=20)
     #c1.image("./image/ic1.png", use_column_width=True);
@@ -583,6 +595,7 @@ def show_multi() -> None:
 
 def main() -> None:
     init()
+    st.write('<style>div.block-container{padding-top:2rem;}</style>', unsafe_allow_html=True)
     st.sidebar.image("./image/logo.png")
     with st.sidebar:
         selected = option_menu("菜单", ["主页", '产品介绍', '单件检测', '批量检测', '漏洞检测'],
